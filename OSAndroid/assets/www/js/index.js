@@ -47,3 +47,67 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+/*
+var makeBG = function(){
+    for (var i = 640; i>=0;i-= 80){
+        for (var t = 640; t>=0;t-=80){
+            var newDiv = document.createElement('<div id="' + i + '' + t + '"style="width:100px;height:100px;border:1px solid red;position:absolute;left:' + i + 'px;top:' + t + 'px;');
+            document.append(newDiv);
+        }
+    }
+}
+*/
+var createGrid = function(){
+    for (var x = 0; x<=900;x+=100){
+        for (var y = 0; y<=900;y+=100){
+            var id = ('x='+x+'-y='+y)
+            var origin = document.getElementById('bg');
+            var spot = document.createElement('div');
+            origin.appendChild(spot);
+            spot.setAttribute('id', id);
+            var placement = ("width:100px;height:100px;border:1px solid red;display:inline-block;position:fixed;left:"+x+"px;top:"+y+"px");
+            spot.setAttribute('style', placement);
+            console.log(id, spot);
+        } 
+    }
+}
+var tweetBox = $('#tweetBox');
+var viewTweet = $('#tweetButton');
+var playAudio = $('#playButton');
+
+var displayTweet = function(){
+    window.alert("loading last three tweets from the Commentary Track Stars feed");
+    var tweetBoxContent = '';
+        $.ajax({
+        url: "http://search.twitter.com/search.json?q=comtrackstars&rpp=3",
+        datatype: 'json',
+        success: function(data){
+               window.alert('success');
+               var tweetHTML = '<li>';
+                    for (var i = 0; i <= data.results.length; i++) {
+                    tweetHTML += data.results[i].text;
+                    tweetBox.append(tweetHTML);
+                    //window.alert('still working?');
+                    }
+               }
+           });
+    tweetHTML += '</li>';
+    tweetBoxContent += tweetHTML;
+    tweetBox.append(tweetBoxContent);
+    
+    }
+var playSound = function() {
+    window.alert('FYI, the only safe URL I could think of is an episode of one of my podcasts, so please wait while an episode of my show "Commentary: Trek Stars" loads and then plays too loudly, because volume control is mad-complicated.');
+    // Play the audio file at url
+    var audio_media = new Media('http://maxhegel.podbean.com/mf/web/7u3h5y/ctrek-ep12.mp3');
+    
+    // Play audio
+    audio_media.play();
+    window.alert('Oh, you waited! You win a "Patiencey" (made up award for patience)');
+}
+
+playAudio.bind('click', playSound);
+viewTweet.bind('click', displayTweet);
+
+
+//createGrid();
