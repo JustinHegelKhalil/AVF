@@ -71,41 +71,85 @@ var createGrid = function(){
         } 
     }
 }
+var deviceNameButton = $('#deviceNameButton');
 var tweetBox = $('#tweetBox');
 var viewTweet = $('#tweetButton');
 var playAudio = $('#playButton');
+var youTubeButton = $('#flickrButton');
+
+
+var displayFeed = function(){
+    tweetBox.empty();
+    window.alert("loading last few posts to Flickr tagged with 'Star Wars'");
+    var tweetBoxContent = '';
+    $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+              {
+              tags: "Star Wars",
+              tagmode: "any",
+              format: "json"
+              },
+              function(data) {
+              $.each(data.items, function(i,item){
+                     var pic = $('<img/>');
+                     pic.attr('src', item.media.m);
+                     pic.appendTo('#tweetBox');
+                     });
+              });
+        }
+
 
 var displayTweet = function(){
+    tweetBox.empty();
     window.alert("loading last three tweets from the Commentary Track Stars feed");
     var tweetBoxContent = '';
         $.ajax({
-        url: "http://search.twitter.com/search.json?q=comtrackstars&rpp=3",
+        url: "http://search.twitter.com/search.json?q=comtrackstars&rpp=5",
         datatype: 'json',
         success: function(data){
                window.alert('success');
-               var tweetHTML = '<li>';
                     for (var i = 0; i <= data.results.length; i++) {
+                    var tweetHTML = '<li class="twit">';
                     tweetHTML += data.results[i].text;
+                    tweetHTML += '</li>';
                     tweetBox.append(tweetHTML);
+                    tweetHTML = '';
                     //window.alert('still working?');
                     }
                }
            });
-    tweetHTML += '</li>';
-    tweetBoxContent += tweetHTML;
-    tweetBox.append(tweetBoxContent);
+    
+    //tweetBoxContent += tweetHTML;
+    //tweetBox.append(tweetBoxContent);
     
     }
 var playSound = function() {
     window.alert('FYI, the only safe URL I could think of is an episode of one of my podcasts, so please wait while an episode of my show "Commentary: Trek Stars" loads and then plays too loudly, because volume control is mad-complicated.');
     // Play the audio file at url
-    var audio_media = new Media('http://maxhegel.podbean.com/mf/web/7u3h5y/ctrek-ep12.mp3');
+    var audio_media = new Media('http://media48.podbean.com/pb/035bfc9caeeb9e7f55f46c2fe81de930/50f8cd8e/data2/blogs32/243688/uploads/ctrek-ep12.mp3');
     
     // Play audio
     audio_media.play();
     window.alert('Oh, you waited! You win a "Patiencey" (made up award for patience)');
 }
 
+var compassTool = $('#compassButton');
+var compassDisplay = function(){
+    tweetBox.empty();
+    window.alert('displaying compass');
+        navigator.compass.getCurrentHeading(Success, Error);
+    }
+    function Success(heading) {
+        navigator.notification.alert('' + heading.magneticHeading + ' degrees');
+    }
+    function Error(compassError) {
+        navigator.notification.alert('' + compassError.code);
+    }
+var announceDevice = function(){
+    navigator.notification.alert(device.name);
+}
+deviceNameButton.bind('click', announceDevice);
+youTubeButton.bind('click', displayFeed);
+compassTool.bind('click', compassDisplay);
 playAudio.bind('click', playSound);
 viewTweet.bind('click', displayTweet);
 

@@ -6,39 +6,49 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title style="font-size:25pt">AVF Android</title>
+        <title>AVF Android</title>
     </head>
-   <body style="font-size:50%">
-
+    <body>
+        
         <div class="app" id="bg" style="z-index:1">
+            
         </div>
         
-        <div class="app" id="home" style="z-index:50">
+         <div class="app" id="home">
             <header>
-                <h1 id="header" style="width:300px;height:50px;display:inline-block;position:fixed;left: 0px;margin: 20px;top:5px;font-size:10pt">Justin Hegel Khalil's app: Android version</h1>
+				<h1 id="header">Justin Hegel Khalil's app: iOS version</h1>
             </header>
-            <p>
-            <a href="#" id="cameraButton" style="width:50px;height:50px;border-radius:10px;background-color:white;border:2px solid black;display:inline-block;position:fixed;left:50px;top:50px">Camera Use Tool</a>
-            <br />
-            <a href="#" id="audioButton" style="width:50px;height:50px;border-radius:10px;background-color:white;border:2px solid black;display:inline-block;position:fixed;left:150px;top:50px">Audio Recorder</a>
-            <br />
-            <a href="#" id="playButton" style="width:50px;height:50px;border-radius:10px;background-color:white;border:2px solid black;display:inline-block;position:fixed;left:250px;top:50px">Playback Tool</a>
-            <br />
-            <a href="#" id="storageButton" style="width:50px;height:50px;border-radius:10px;border: 2px solid black;background-color: white;display:inline-block;position:fixed;left:50px;top: 115px;">Storage Access Feature</a>
-            <br />
-            <a href="#" id="contactsButton" style="width:50px;height:50px;border-radius:10px;border: 2px solid black;display:inline-block;background-color: white;position:fixed;left:150px;top: 115px;">Access Contacts Feature</a>
-            </p>
+            <p class="subHeader">Native features:</p>
+            <ul class="aRow">
+            <li><a href="#" class="menuCell" id="compassButton">Compass Tool</a></li>
+            <li><a href="#" class="menuCell" id="deviceNameButton">Device Name</a></li>
+            <li><a href="#" class="menuCell" id="playButton">Play</a></li>
+            </ul>
+            <ul class="aRow">
+            <a href="#" class="menuCell" id="storageButton">Storage Access Feature</a>
+            <a href="#" class="menuCell" id="contactsButton">Access Contacts Feature</a>
+            </ul>
+            <ul><p class="subHeader">Data APIs:</p></ul>
+            <ul class="aRow">
+            <li><a href="#" class="menuCell" id="flickrButton">FlickR Button (Flickr integration)</a></li>
+            <li><a href="#" class="menuCell" id="tweetButton">Tweet Button (Twitter Integration)</a></li>
+            </ul>
             
-            <p>
-            <a href="#" id="youtubeButton" style="width:50px;height:50px;border-radius: 10px;border:1px solid red;display:inline-block;position:fixed;left: 50px;top: 185px;">YouTube Integration</a><br />
-           <a href="#" id="tweetButton" style="width:50px;height:50px;border-radius: 10px;border:1px solid red;display:inline-block;position:fixed;left: 150px;top: 185px;">Tweet Button (Twitter Integration)</a></p>
-            
-            <p >
-            <a href="#" id="weekOne" style="width:50px;height:50px;border-radius: 10px;border:2px solid teal;display:inline-block;position:fixed;left: 250px;top: 185px;">Week one research thingies</a></p>
-            <div id="tweetBox" style="width:400px;height:210px;overflow:scroll;left:200px;border:2px solid teal;display:block;position:fixed;left:50px;top:530px;border-radius:10px;background-color:white"></div>
+            <ul><p id="research" class="subHeader">Research</p></ul>
+            <ul class="aRow">
+            <a href="#" id="weekOne" class="menuCell">Week one research thingies</a></p>
+                </ul>
+            <div id="tweetBox"></div>
+            <video id="vidbox" controls>
+                <source src="m2v.m2v">Your browser does not support the video tag.</video>
+           
         </div>
+        
+        
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="cordova-2.3.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
     </body>
+   
 </html>
